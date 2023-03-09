@@ -1,17 +1,4 @@
-[09-Mar-2023 01:07:14 UTC] src/session.php: Can not generate JWT: Algorithm not supported
-[09-Mar-2023 01:09:38 UTC] src/session.php: Can not generate JWT: Algorithm not supported
-[09-Mar-2023 01:10:00 UTC] src/session.php: Can not generate JWT: Algorithm not supported
-[09-Mar-2023 01:19:00 UTC] /home/hendz/Projects/PHP/belajar-jwt-session-mgmt/src/session.php: Can not generate JWT: Algorithm not supported
-[09-Mar-2023 01:32:38 UTC] /home/hendz/Projects/PHP/belajar-jwt-session-mgmt/src/session.php25: Can not generate JWT: Algorithm not supported
-[09-Mar-2023 01:53:03 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function helper\logging\get_file_and_line() in /home/hendz/Projects/PHP/belajar-jwt-session-mgmt/src/session.php:26
-Stack trace:
-#0 /home/hendz/Projects/PHP/belajar-jwt-session-mgmt/login.php(7): session\SessionManager::login('hendz', 'ahmad')
-#1 {main}
-  thrown in /home/hendz/Projects/PHP/belajar-jwt-session-mgmt/src/session.php on line 26
-[09-Mar-2023 02:08:29 UTC] /home/hendz/Projects/PHP/belajar-jwt-session-mgmt/src/helper.phpline 6:  Can not generate JWT: Algorithm not supported
-[09-Mar-2023 02:33:32 UTC] /home/hendz/Projects/PHP/belajar-jwt-session-mgmt/src/helper.phpline 6:  Can not generate JWT: Algorithm not supported
-[09-Mar-2023 03:02:02 UTC] PHP Fatal error:  Uncaught Error: Class "Firebase\JWT\JWT" not found in /home/hendz/Projects/PHP/belajar-jwt-session-mgmt/src/controller/session.php:26
-Stack trace:
-#0 /home/hendz/Projects/PHP/belajar-jwt-session-mgmt/login.php(7): session\SessionManager::login('hendz', 'ahmad')
-#1 {main}
-  thrown in /home/hendz/Projects/PHP/belajar-jwt-session-mgmt/src/controller/session.php on line 26
+
+[2023-03-09T07:51:27.420973+00:00] SessionManager::class.ERROR: /home/hendz/Projects/PHP/session-management-with-jwt/src/helper.phpline 6:  Can not generate JWT: Algorithm not supported [] []
+[2023-03-09T07:56:47.862707+00:00] SessionManager::class.ERROR: /home/hendz/Projects/PHP/session-management-with-jwt/src/helper.php [line 6]: Incorrect key for this algorithm [] []
+[2023-03-09T12:44:26.685419+00:00] ErrorLogger.ERROR: /home/hendz/Projects/PHP/session-management-with-jwt/src/helper.php [line 11]:  Can not generate JWT: Algorithm not supported [] []
