@@ -1,4 +1,0 @@
-
-[2023-03-09T07:51:27.420973+00:00] SessionManager::class.ERROR: /home/hendz/Projects/PHP/session-management-with-jwt/src/helper.phpline 6:  Can not generate JWT: Algorithm not supported [] []
-[2023-03-09T07:56:47.862707+00:00] SessionManager::class.ERROR: /home/hendz/Projects/PHP/session-management-with-jwt/src/helper.php [line 6]: Incorrect key for this algorithm [] []
-[2023-03-09T12:44:26.685419+00:00] ErrorLogger.ERROR: /home/hendz/Projects/PHP/session-management-with-jwt/src/helper.php [line 11]:  Can not generate JWT: Algorithm not supported [] []
