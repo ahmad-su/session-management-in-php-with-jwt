@@ -1,7 +1,7 @@
 <?php
 
 namespace session {
-  //you will want to see the helper.php file. it's simple but I think I need it
+  //you will want to see the helper.php file. It contains logger and some helpful function
   require_once __DIR__ . '/../../vendor/autoload.php';
   require_once __DIR__ . '/../helper.php';
 
@@ -27,6 +27,8 @@ namespace session {
 
     public static function login(string $username, string $password): bool
     {
+      //error logger from helper
+      global $error_logger;
       //It's hardcoded now. later we will use db to test username & password
       //If the username & password match, 
       //we will create a token and assign it to user's browser cookie
@@ -34,11 +36,17 @@ namespace session {
         //payload to encrypt
         $jwt_payload = ["username" => $username];
         //remember that it could fail. So we need to handle error case
+        //We used Monolog logger here, to replace error_log() prelude function
+
         try {
           $jwt = JWT\JWT::encode($jwt_payload, SessionManager::$SECRET_KEY, 'HS256');
         } catch (Exception $e) {
           //will write to logs/error.log (config in php.ini)
-          error_log(logging\get_file_and_line() . " Can not generate JWT: " . $e->getMessage());
+          //we're not going to use this anymore so it's commented
+          // error_log(logging\get_file_and_line() . " Can not generate JWT: " . $e->getMessage());
+
+          //use new method to write to log file
+          $error_logger->error(logging\get_file_and_line() . " Can not generate JWT: " . $e->getMessage());
           exit("Can not establish session: " . $e->getMessage() . ". Please contact administrator at: ahmad.suhae@gmail.com");
         }
         //set browser cookie. you know where this function comes from. std lib.
@@ -55,20 +63,29 @@ namespace session {
     //Just anything you want to suit your logic and needs. 
     public static function get_session_info(): Session
     {
+      //error logger from helper
+      global $error_logger;
       //check if a cookie named "X-SESSION" is set
       if (isset($_COOKIE['X-SESSION'])) {
         //if it was, retrieve its value which is, the token
         $jwt = $_COOKIE['X-SESSION'];
+
+        //We used Monolog logger here, to replace error_log() prelude function
 
         //decoding can fail.
         try {
           $payload = JWT\JWT::decode($jwt, new JWT\Key(SessionManager::$SECRET_KEY, 'HS256'));
           return new Session($payload->username);
         } catch (Exception $e) {
-          error_log(logging\get_file_and_line() . $e->getMessage());
+          //same here, we will use new logging method
+          // error_log(logging\get_file_and_line() . $e->getMessage());
+          $error_logger->error(logging\get_file_and_line() . $e->getMessage());
+
+          //after we populate Exception, the current caller (index.php) will redirect to login page again
           throw new Exception(("Cannot get session info" . $e->getMessage()));
         }
       } else {
+        //If no session stored in cookie, populate error
         //The caller must catch this
         throw new Exception("You are not logged in");
       }
